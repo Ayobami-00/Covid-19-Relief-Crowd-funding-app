@@ -2,7 +2,7 @@ class UserModel {
   String _email;
   String _password;
   String _full_name;
-  int _total_amount;
+  double _total_amount;
   int _projects_supported;
 
   UserModel.fromJson(Map<String, dynamic> parsedJson) {
@@ -29,7 +29,7 @@ class UserModel {
 
   String get full_name => _full_name;
 
-  int get total_amount => _total_amount;
+  double get total_amount => _total_amount;
 
   int get projects_supported => _projects_supported;
 }
@@ -51,4 +51,33 @@ class UserLoginModel {
   String get email => _email;
 
   String get password => _password;
+}
+
+class UserProfileModel {
+  String _id;
+  String _full_name;
+  double _total_amount;
+  int _projects_supported;
+
+  UserProfileModel.fromJson(Map<String, dynamic> parsedJson) {
+    _id = parsedJson['id'];
+    _full_name = parsedJson['full_name'];
+    _total_amount = parsedJson['total_amount'];
+    _projects_supported = parsedJson['projects_supported'];
+  }
+
+  Map<String, dynamic> toJson() => {
+        "id": _id,
+        "full_name": _full_name,
+        "projects_supported": _projects_supported,
+        "total_amount": _total_amount
+      };
+
+  String get id => _id;
+
+  String get full_name => _full_name;
+
+  double get total_amount => _total_amount;
+
+  int get projects_supported => _projects_supported;
 }

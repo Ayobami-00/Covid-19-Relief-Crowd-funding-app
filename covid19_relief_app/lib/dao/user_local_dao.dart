@@ -32,4 +32,20 @@ class UserDao {
       return false;
     }
   }
+
+
+  Future<List<Map>> getUser(int id) async {
+    final db = await dbProvider.database;
+    try {
+      List<Map> users = await db
+          .query(userTable, where: 'id = ?', whereArgs: [id]);
+      if (users.length > 0) {
+        return users;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
+  }
 }

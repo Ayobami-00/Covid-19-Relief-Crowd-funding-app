@@ -7,22 +7,22 @@ import 'package:meta/meta.dart';
 class UserRepository {
   final userDao = UserDao();
 
-  Future<User> authenticate ({
-    @required String username,
-    @required String password,
-  }) async {
-    // UserLogin userLogin = UserLogin(
-    //   username: username,
-    //   password: password
-    // );
-    // Token token = await getToken(userLogin);
-    // User user = User(
-    //   id: 0,
-    //   username: username,
-    //   token: token.token,
-    // );
-    // return user;
-  }
+  // Future<User> authenticate ({
+  //   @required String username,
+  //   @required String password,
+  // }) async {
+  //   // UserLogin userLogin = UserLogin(
+  //   //   username: username,
+  //   //   password: password
+  //   // );
+  //   // Token token = await getToken(userLogin);
+  //   // User user = User(
+  //   //   id: 0,
+  //   //   username: username,
+  //   //   token: token.token,
+  //   // );
+  //   // return user;
+  // }
 
   Future<void> persistToken ({
     @required User user
@@ -39,6 +39,11 @@ class UserRepository {
 
   Future <bool> hasToken() async {
     bool result = await userDao.checkUser(0);
+    return result;
+  }
+
+  Future<List<Map>> getUser() async {
+    List<Map> result = await userDao.getUser(0);
     return result;
   }
 }

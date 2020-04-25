@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:covid19_relief_app/models/user_model.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
@@ -29,5 +29,16 @@ class ApiClient {
       }
       return json.decode(response.body)['token'];
     });
+  }
+
+  Future<UserProfileModel> fetchUserProfile(String token) async {
+    final url = '$baseUrl/api/account';
+    final response = await http.get(
+      url,
+      headers: {HttpHeaders.authorizationHeader: 'Bearer ' + token},
+    );
+    final responseJson = json.decode(response.body);
+
+    return UserProfileModel.fromJson(responseJson['data'][0]);
   }
 }

@@ -14,4 +14,7 @@ class ApiRepository {
     return apiClient.signInUser(body: body);
   }
   
+  Future<UserProfileModel> fetchUserProfile(String token){
+    return apiClient.fetchUserProfile(token);
+  }
 }

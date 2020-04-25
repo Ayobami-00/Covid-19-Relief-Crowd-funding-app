@@ -91,13 +91,20 @@ class _AuthPageState extends State<AuthPage> {
                               children: <Widget>[
                                 Expanded(
                                     child: FlatButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      _selectedPage = Page.signin;
+                                    });
+                                  },
                                   child: Text(
-                                    _selectedPage == Page.signin
-                                        ? 'Sign In'
-                                        : 'Sign Up',
+                                    'Sign In',
+                                    // _selectedPage == Page.signin
+                                    // ? 'Sign In'
+                                    // : 'Sign Up',
                                     style: TextStyle(
-                                        color: _customColour.color1,
+                                        color: _selectedPage == Page.signin
+                                            ? _customColour.color1
+                                            : _customColour.color2,
                                         fontSize: 30.0,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -105,24 +112,30 @@ class _AuthPageState extends State<AuthPage> {
                                 Expanded(
                                     child: FlatButton(
                                   onPressed: () {
-                                    if (_selectedPage == Page.signin) {
-                                      setState(() {
-                                        // _text2 = 'Sign In';
-                                        // _text1 = 'Sign Up';
-                                        _selectedPage = Page.signup;
-                                      });
-                                    } else if (_selectedPage == Page.signup) {
-                                      // _text2 = 'Sign Up';
-                                      // _text1 = 'Sign In';
-                                      _selectedPage = Page.signin;
-                                    }
+                                    setState(() {
+                                      _selectedPage = Page.signup;
+                                    });
+                                    // if (_selectedPage == Page.signin) {
+                                    //   setState(() {
+                                    //     // _text2 = 'Sign In';
+                                    //     // _text1 = 'Sign Up';
+                                    //     _selectedPage = Page.signup;
+                                    //   });
+                                    // } else if (_selectedPage == Page.signup) {
+                                    //   // _text2 = 'Sign Up';
+                                    //   // _text1 = 'Sign In';
+                                    //   _selectedPage = Page.signin;
+                                    // }
                                   },
                                   child: Text(
-                                    _selectedPage == Page.signin
-                                        ? 'Sign Up'
-                                        : 'Sign In',
+                                    'Sign Up',
+                                    // _selectedPage == Page.signin
+                                    //     ? 'Sign Up'
+                                    //     : 'Sign In',
                                     style: TextStyle(
-                                        color: _customColour.color2,
+                                        color: _selectedPage == Page.signup
+                                            ? _customColour.color1
+                                            : _customColour.color2,
                                         fontSize: 30.0,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -143,102 +156,107 @@ class _AuthPageState extends State<AuthPage> {
           } else if (state is AuthpageLoading) {
             return Loading();
           } else {
-            return Stack(
-              children: <Widget>[
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(0.0),
-                    child: Container(
-                        height: MediaQuery.of(context).size.height,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(height: 50.0),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  0.0, 50.0, 0.0, 0.0),
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: <Widget>[
-                                    Text(
-                                      'Covid-19',
-                                      style: TextStyle(
-                                          color: _customColour.color1,
-                                          fontSize: 40.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      height: 5.0,
-                                    ),
-                                    Text(
-                                      'Relief',
-                                      style: TextStyle(
-                                          color: _customColour.color2,
-                                          fontSize: 35.0,
-                                          fontStyle: FontStyle.normal),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 60.0),
-                            Row(
-                              children: <Widget>[
-                                Expanded(
-                                    child: FlatButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    _selectedPage == Page.signin
-                                        ? 'Sign In'
-                                        : 'Sign Up',
-                                    style: TextStyle(
-                                        color: _customColour.color1,
-                                        fontSize: 30.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )),
-                                Expanded(
-                                    child: FlatButton(
-                                  onPressed: () {
-                                    if (_selectedPage == Page.signin) {
-                                      setState(() {
-                                        // _text2 = 'Sign In';
-                                        // _text1 = 'Sign Up';
-                                        _selectedPage = Page.signup;
-                                      });
-                                    } else if (_selectedPage == Page.signup) {
-                                      // _text2 = 'Sign Up';
-                                      // _text1 = 'Sign In';
-                                      _selectedPage = Page.signin;
-                                    }
-                                  },
-                                  child: Text(
-                                    _selectedPage == Page.signin
-                                        ? 'Sign Up'
-                                        : 'Sign In',
-                                    style: TextStyle(
-                                        color: _customColour.color2,
-                                        fontSize: 30.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )),
-                              ],
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height -
-                                  MediaQuery.of(context).size.height / 2.5,
-                              child: _loadScreen(context),
-                            )
-                          ],
-                        )),
-                  ),
-                ),
-              ],
-            );
+            return Loading();
+            // return Stack(
+            //   children: <Widget>[
+            //     Container(
+            //       child: Padding(
+            //         padding: const EdgeInsets.all(0.0),
+            //         child: Container(
+            //             height: MediaQuery.of(context).size.height,
+            //             decoration: BoxDecoration(
+            //               color: Colors.white,
+            //               borderRadius: BorderRadius.circular(16),
+            //             ),
+            //             child: Column(
+            //               children: <Widget>[
+            //                 SizedBox(height: 50.0),
+            //                 Padding(
+            //                   padding: const EdgeInsets.fromLTRB(
+            //                       0.0, 50.0, 0.0, 0.0),
+            //                   child: Container(
+            //                     alignment: Alignment.center,
+            //                     child: Column(
+            //                       children: <Widget>[
+            //                         Text(
+            //                           'Covid-19',
+            //                           style: TextStyle(
+            //                               color: _customColour.color1,
+            //                               fontSize: 40.0,
+            //                               fontWeight: FontWeight.bold),
+            //                         ),
+            //                         SizedBox(
+            //                           height: 5.0,
+            //                         ),
+            //                         Text(
+            //                           'Relief',
+            //                           style: TextStyle(
+            //                               color: _customColour.color2,
+            //                               fontSize: 35.0,
+            //                               fontStyle: FontStyle.normal),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 SizedBox(height: 60.0),
+            //                 Row(
+            //                   children: <Widget>[
+            //                     Expanded(
+            //                         child: FlatButton(
+            //                       onPressed: () {
+            //                           _selectedPage = Page.signin;
+            //                       },
+            //                       child: Text(
+            //                         'Sign In',
+            //                         // _selectedPage == Page.signin
+            //                         //     ? 'Sign In'
+            //                         //     : 'Sign Up',
+            //                         style: TextStyle(
+            //                             color:_selectedPage == Page.signin ? _customColour.color1 : _customColour.color2,
+            //                             fontSize: 30.0,
+            //                             fontWeight: FontWeight.bold),
+            //                       ),
+            //                     )),
+            //                     Expanded(
+            //                         child: FlatButton(
+            //                       onPressed: () {
+            //                           _selectedPage = Page.signup;
+            //                         // if (_selectedPage == Page.signin) {
+            //                         //   setState(() {
+            //                         //     // _text2 = 'Sign In';
+            //                         //     // _text1 = 'Sign Up';
+            //                         //     _selectedPage = Page.signup;
+            //                         //   });
+            //                         // } else if (_selectedPage == Page.signup) {
+            //                         //   // _text2 = 'Sign Up';
+            //                         //   // _text1 = 'Sign In';
+            //                           // _selectedPage = Page.signin;
+            //                         // }
+            //                       },
+            //                       child: Text('Sign Up',
+            //                         // _selectedPage == Page.signin
+            //                         //     ? 'Sign Up'
+            //                         //     : 'Sign In',
+            //                         style: TextStyle(
+            //                             color: _selectedPage == Page.signup ? _customColour.color1 : _customColour.color2,
+            //                             fontSize: 30.0,
+            //                             fontWeight: FontWeight.bold),
+            //                       ),
+            //                     )),
+            //                   ],
+            //                 ),
+            //                 Container(
+            //                   height: MediaQuery.of(context).size.height -
+            //                       MediaQuery.of(context).size.height / 2.5,
+            //                   child: _loadScreen(context),
+            //                 )
+            //               ],
+            //             )),
+            //       ),
+            //     ),
+            //   ],
+            // );
           }
         })));
   }

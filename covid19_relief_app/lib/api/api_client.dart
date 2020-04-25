@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:covid19_relief_app/models/funds_model.dart';
 import 'package:covid19_relief_app/models/project_model.dart';
 import 'package:covid19_relief_app/models/user_model.dart';
 import 'package:dio/dio.dart';
@@ -10,19 +11,29 @@ class ApiClient {
 
   Future<String> signUpUser({Map body}) async {
     final url = '$baseUrl/api/signup';
-    return http.post(url, body: body).then((http.Response response) {
+    return http
+        .post(
+      url,
+      body: body,
+    )
+        .then((http.Response response) {
       final int statusCode = response.statusCode;
 
       if (statusCode < 200 || statusCode > 400 || json == null) {
         throw new Exception("Error while fetching data");
       }
-      return json.decode(response.body);
+      return json.decode(response.body)['message'];
     });
   }
 
   Future<String> signInUser({Map body}) async {
     final url = '$baseUrl/api/signin';
-    return http.post(url, body: body).then((http.Response response) {
+    return http
+        .post(
+      url,
+      body: body,
+    )
+        .then((http.Response response) {
       final int statusCode = response.statusCode;
 
       if (statusCode < 200 || statusCode > 400 || json == null) {
@@ -43,7 +54,7 @@ class ApiClient {
     return UserProfileModel.fromJson(responseJson['data'][0]);
   }
 
-   Future<String> updateUserById(String token, Map body) async {
+  Future<Map<String, dynamic>> updateUserById(String token, Map body) async {
     final url = '$baseUrl/api/updateuser';
     return http.put(
       url,
@@ -60,7 +71,7 @@ class ApiClient {
     });
   }
 
-  Future<String> createProject(String token, Map body) async {
+  Future<Map<String, dynamic>> createProject(String token, Map body) async {
     final url = '$baseUrl/api/createproject';
     return http.post(
       url,
@@ -116,7 +127,6 @@ class ApiClient {
     });
   }
 
-
   Future<ProjectModel> updateProjectById(String token, Map body) async {
     final url = '$baseUrl/api/updateproject';
     return http.post(
@@ -131,6 +141,54 @@ class ApiClient {
       }
 
       return json.decode(response.body);
+    });
+  }
+
+  Future<Map<String, dynamic>> createFunds({Map body}) async {
+    final url = '$baseUrl/api/createfunds';
+    return http.post(url, body: body).then((http.Response response) {
+      final int statusCode = response.statusCode;
+
+      if (statusCode < 200 || statusCode > 400 || json == null) {
+        throw new Exception("Error while fetching data");
+      }
+      return json.decode(response.body);
+    });
+  }
+
+  Future<FundsModel> getFundsById(String token, Map body) async {
+    final url = '$baseUrl/api/getfundsbyid';
+    return http.post(
+      url,
+      body: body,
+      headers: {HttpHeaders.authorizationHeader: 'Bearer ' + token},
+    ).then((http.Response response) {
+      final int statusCode = response.statusCode;
+
+      if (statusCode < 200 || statusCode > 400 || json == null) {
+        throw new Exception("Error while fetching data");
+      }
+      final responseJson = json.decode(response.body);
+
+      return FundsModel.fromJson(responseJson['data'][0]);
+    });
+  }
+
+  Future<FundsModel> getFundsByProjectId(String token, Map body) async {
+    final url = '$baseUrl/api/getfundsbyprojectid';
+    return http.post(
+      url,
+      body: body,
+      headers: {HttpHeaders.authorizationHeader: 'Bearer ' + token},
+    ).then((http.Response response) {
+      final int statusCode = response.statusCode;
+
+      if (statusCode < 200 || statusCode > 400 || json == null) {
+        throw new Exception("Error while fetching data");
+      }
+      final responseJson = json.decode(response.body);
+
+      return FundsModel.fromJson(responseJson['data'][0]);
     });
   }
 }

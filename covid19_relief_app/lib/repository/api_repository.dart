@@ -1,4 +1,5 @@
 import 'package:covid19_relief_app/api/api_client.dart';
+import 'package:covid19_relief_app/models/funds_model.dart';
 import 'package:covid19_relief_app/models/project_model.dart';
 import 'package:covid19_relief_app/models/user_model.dart';
 import 'package:meta/meta.dart';
@@ -19,11 +20,11 @@ class ApiRepository {
     return apiClient.fetchUserProfile(token);
   }
 
-  Future<String> updateUserById(String token, Map body) {
+  Future<Map<String, dynamic>> updateUserById(String token, Map body) {
     return apiClient.updateUserById(token, body);
   }
 
-  Future<String> createProject(String token, Map body){
+  Future<Map<String, dynamic>> createProject(String token, Map body){
     return apiClient.createProject(token, body);
   }
 
@@ -43,5 +44,15 @@ class ApiRepository {
     return apiClient.updateProjectById(token, body);
   }
 
+  Future<Map<String, dynamic>> createFunds({Map body}){
+    return apiClient.createFunds(body: body);
+  }
 
+  Future<FundsModel> getFundsById(String token, Map body) {
+    return apiClient.getFundsById(token, body);
+  }
+
+  Future<FundsModel> getFundsByProjectId(String token, Map body){
+    return apiClient.getFundsByProjectId(token, body);
+  }
 }

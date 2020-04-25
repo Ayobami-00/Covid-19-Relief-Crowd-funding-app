@@ -58,19 +58,22 @@ class UserProfileModel {
   String _full_name;
   double _total_amount;
   int _projects_supported;
+  String _user_image_url;
 
   UserProfileModel.fromJson(Map<String, dynamic> parsedJson) {
     _id = parsedJson['id'];
     _full_name = parsedJson['full_name'];
     _total_amount = parsedJson['total_amount'];
     _projects_supported = parsedJson['projects_supported'];
+    _user_image_url = parsedJson['user_image_url'];
   }
 
   Map<String, dynamic> toJson() => {
         "id": _id,
         "full_name": _full_name,
         "projects_supported": _projects_supported,
-        "total_amount": _total_amount
+        "total_amount": _total_amount,
+        "user_image_url" : _user_image_url
       };
 
   String get id => _id;
@@ -80,4 +83,6 @@ class UserProfileModel {
   double get total_amount => _total_amount;
 
   int get projects_supported => _projects_supported;
+
+  String get user_image_url => _user_image_url;
 }

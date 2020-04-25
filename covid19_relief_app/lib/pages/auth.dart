@@ -25,8 +25,8 @@ class _AuthPageState extends State<AuthPage> {
   bool _isLoading = false;
   bool _checkBoxTileVal = false;
   CustomColour _customColour = CustomColour();
-  String _text1 = 'Sign In';
-  String _text2 = 'Sign Up';
+  // String _text1;
+  // String _text2;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,9 @@ class _AuthPageState extends State<AuthPage> {
                                     child: FlatButton(
                                   onPressed: () {},
                                   child: Text(
-                                    _text1,
+                                    _selectedPage == Page.signin
+                                        ? 'Sign In'
+                                        : 'Sign Up',
                                     style: TextStyle(
                                         color: _customColour.color1,
                                         fontSize: 30.0,
@@ -103,20 +105,22 @@ class _AuthPageState extends State<AuthPage> {
                                 Expanded(
                                     child: FlatButton(
                                   onPressed: () {
-                                    if (_text2 == 'Sign Up') {
+                                    if (_selectedPage == Page.signin) {
                                       setState(() {
-                                        _text2 = 'Sign In';
-                                        _text1 = 'Sign Up';
+                                        // _text2 = 'Sign In';
+                                        // _text1 = 'Sign Up';
                                         _selectedPage = Page.signup;
                                       });
-                                    } else if (_text2 == 'Sign In') {
-                                      _text2 = 'Sign Up';
-                                      _text1 = 'Sign In';
+                                    } else if (_selectedPage == Page.signup) {
+                                      // _text2 = 'Sign Up';
+                                      // _text1 = 'Sign In';
                                       _selectedPage = Page.signin;
                                     }
                                   },
                                   child: Text(
-                                    _text2,
+                                    _selectedPage == Page.signin
+                                        ? 'Sign Up'
+                                        : 'Sign In',
                                     style: TextStyle(
                                         color: _customColour.color2,
                                         fontSize: 30.0,
@@ -188,7 +192,9 @@ class _AuthPageState extends State<AuthPage> {
                                     child: FlatButton(
                                   onPressed: () {},
                                   child: Text(
-                                    _text1,
+                                    _selectedPage == Page.signin
+                                        ? 'Sign In'
+                                        : 'Sign Up',
                                     style: TextStyle(
                                         color: _customColour.color1,
                                         fontSize: 30.0,
@@ -198,20 +204,22 @@ class _AuthPageState extends State<AuthPage> {
                                 Expanded(
                                     child: FlatButton(
                                   onPressed: () {
-                                    if (_text2 == 'Sign Up') {
+                                    if (_selectedPage == Page.signin) {
                                       setState(() {
-                                        _text2 = 'Sign In';
-                                        _text1 = 'Sign Up';
+                                        // _text2 = 'Sign In';
+                                        // _text1 = 'Sign Up';
                                         _selectedPage = Page.signup;
                                       });
-                                    } else if (_text2 == 'Sign In') {
-                                      _text2 = 'Sign Up';
-                                      _text1 = 'Sign In';
+                                    } else if (_selectedPage == Page.signup) {
+                                      // _text2 = 'Sign Up';
+                                      // _text1 = 'Sign In';
                                       _selectedPage = Page.signin;
                                     }
                                   },
                                   child: Text(
-                                    _text2,
+                                    _selectedPage == Page.signin
+                                        ? 'Sign Up'
+                                        : 'Sign In',
                                     style: TextStyle(
                                         color: _customColour.color2,
                                         fontSize: 30.0,
@@ -232,7 +240,6 @@ class _AuthPageState extends State<AuthPage> {
               ],
             );
           }
-         
         })));
   }
 

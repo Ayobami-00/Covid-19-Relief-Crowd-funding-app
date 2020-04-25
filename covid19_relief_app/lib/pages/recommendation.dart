@@ -1,62 +1,28 @@
-// class AlbumsPage extends StatefulWidget {
-//   @override
-//   _AlbumsPageState createState() => _AlbumsPageState();
-// }
+import 'package:covid19_relief_app/bloc/recommendation_bloc.dart/bloc/recommendation_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-// class _AlbumsPageState extends State<AlbumsPage> {
-//   void didChangeDependencies() {
-//     super.didChangeDependencies();
-//     // Immediately trigger the event
-//     BlocProvider.of<AlbumsBloc>(context).add(LoadAlbums());
-//   }
+class RecommendationPage extends StatefulWidget {
+  @override
+  _RecommendationPageState createState() => _RecommendationPageState();
+}
 
- 
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocListener<AlbumsBloc, AlbumsState>(
-//       listener: (context, state) {},
-//       child: BlocBuilder<AlbumsBloc, AlbumsState>(
-//         builder: (context, state) {
-//           if (state is AlbumsInitial) {
-//             return Container(
-//               height: MediaQuery.of(context).size.height,
-//               child: Loading(),
-//             );
-//           } else if (state is NoAlbumsAvailable) {
-//             return Container(
-//                 height: MediaQuery.of(context).size.height,
-//                 child: Center(
-//                     child: Text(
-//                   state.message,
-//                   style: TextStyle(
-//                       color: Colors.deepOrange.withOpacity(0.4),
-//                       fontWeight: FontWeight.bold,
-//                       fontSize: 30.0),
-//                 )));
-//           } else if (state is AlbumsLoaded) {
-//             List<Song> albums = state.allAlbumsList;
-//             return Container(
-//               child: Padding(
-//                 padding: const EdgeInsets.fromLTRB(10.0,10.0,10.0,75.0),
-//                 child: GridView.builder(
-//                   itemCount: albums.length,
-//                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                       crossAxisCount: 2,
-//                       crossAxisSpacing: 1.5,
-//                       mainAxisSpacing: 1.5,
-//                       childAspectRatio: 0.7),
-//                   itemBuilder: (BuildContext context, int index) {
-//                     return CardView(albums: albums,index: index);
-//                   },
-//                 ),
-//               ),
-//             );
-//           } else {
-//             return Container();
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }
+class _RecommendationPageState extends State<RecommendationPage> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<RecommendationBloc, RecommendationState>(
+        listener: (context, state) {
+      if (state is RecommendationInitial) {
+        // Scaffold.of(context).showSnackBar(SnackBar(
+        //   content: Text('${state.error}'),
+        //   backgroundColor: Colors.red,
+        // ));
+      }
+    }, child: BlocBuilder<RecommendationBloc, RecommendationState>(
+            builder: (context, state) {
+      if (state is RecommendationInitial) {
+        return Container();
+      }
+    }));
+  }
+}

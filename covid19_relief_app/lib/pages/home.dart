@@ -1,4 +1,7 @@
 import 'package:covid19_relief_app/bloc/homepage_bloc/bloc/homepage_bloc.dart';
+import 'package:covid19_relief_app/bloc/mycontribution_bloc/bloc/mycontribution_bloc.dart';
+import 'package:covid19_relief_app/bloc/recommendation_bloc.dart/bloc/recommendation_bloc.dart';
+import 'package:covid19_relief_app/pages/mycontribution.dart';
 import 'package:covid19_relief_app/utils/colors.dart';
 import 'package:covid19_relief_app/widgets/loading.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,8 +23,14 @@ class _HomePageState extends State<HomePage> {
   CustomColour _customColour = CustomColour();
 
   final List<Widget> _children = [
-    Text('4'),
-    Text('2'),
+    BlocProvider(
+      create: (context) => RecommendationBloc(),
+      child: HomePage(),
+    ),
+    BlocProvider(
+      create: (context) => MycontributionBloc(),
+      child: MyContribution(),
+    ),
     Text('3'),
     Text('4'),
   ];
@@ -31,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
     BlocProvider.of<HomepageBloc>(context).add(LoadHomePage());
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<HomepageBloc, HomepageState>(
@@ -134,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                           Expanded(
                             child: FlatButton(
                               onPressed: () {},
-                              child: Text('Project',
+                              child: Text('Projects',
                                   style: TextStyle(
                                       fontSize: 11.0,
                                       fontWeight: FontWeight.bold,
